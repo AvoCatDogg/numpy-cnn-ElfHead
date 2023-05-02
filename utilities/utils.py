@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+#cifar10 dataset에서 label과 name이 어떻게 일치되는지에 관한 dict이다.
 labels_to_name_map = {
     0: 'airplane',
     1: 'automobile',
@@ -16,6 +16,7 @@ labels_to_name_map = {
 }
 
 
+#label에 해당하는 name을 불러오는 함수
 def get_name(label):
     return labels_to_name_map[int(np.argmax(label))]
 
@@ -27,6 +28,12 @@ def pad_inputs(X, pad):
     :param pad:[int]: number of columns to pad
     :return:[numpy array]: padded dataset
     '''
+    '''
+    zeropadding을 이미지에 적용하기 위한 함수이다.
+    :param X:[numpy array]: 이미지의 shape에 대한 dataset (m, height, width, depth)
+    :param pad:[int]: padding 해야하는 열의 수
+    :return:[numpy array]: 패딩이 된 dataset
+    '''
     return np.pad(X, ((0, 0), (pad[0], pad[0]), (pad[1], pad[1]), (0, 0)), 'constant')
 
 
@@ -34,6 +41,11 @@ def show_image(image, title=None, cmap=None):
     '''
     Function to display one image
     :param image: numpy float array: of shape (32, 32, 3)
+    :return: Void
+    '''
+    '''
+    하나의 이미지를 표기하기 위한 함수
+    :param image:형식의 numpy array이다: shape = (32, 32, 3)
     :return: Void
     '''
     if cmap is not None:
